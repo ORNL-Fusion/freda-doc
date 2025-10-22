@@ -11,3 +11,5 @@ Welcome to FREDA's Documentation!
    engineering
    geometry
    workflows
+   ips
+
