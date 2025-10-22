@@ -6,3 +6,8 @@ Welcome to FREDA's Documentation!
    :caption: Contents:
 
    introduction
+   plasma
+   materials
+   engineering
+   geometry
+   workflows
