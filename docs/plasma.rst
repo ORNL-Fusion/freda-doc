@@ -7,3 +7,5 @@ Plasma
    :caption: Contents:
 
    plasma/introduction
+   plasma/bout
+
