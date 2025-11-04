@@ -313,7 +313,7 @@ JSON object with four top-level keys.
 * **Purpose:** Tells Dakota how to combine the different fidelities (e.g., as an
   ``additive`` correction).
 * **Action:** You can generally leave this unchanged as a starting point. See
-  `surrogate_global_correction`_.
+  `correction`_.
 
 5.4. ``fidelities``
 -------------------
@@ -331,11 +331,8 @@ Each fidelity object has 5 required keys:
 
 3. ``variables``: An object defining the uncertain inputs for *this model*.
 
-    * This is where you list your parameters (e.g., ``"uniform_uncertain":
-      10``), their bounds (``"lower_bounds": [...]``, ``"upper_bounds":
-      [...]``), and their names (``"descriptors": [...]``).
-    * CRITICAL: The descriptors (names) must match what the IPS workflow expects
-      (e.g., ``'sampling_R'``, ``'hcd_model__INHCD_PE_0'``).
+    * This is where you list your parameters (e.g., ``"uniform_uncertain": 10``), their bounds (``"lower_bounds": [...]``, ``"upper_bounds":[...]``), and their names (``"descriptors": [...]``).
+    * CRITICAL: The descriptors (names) must match what the IPS workflow expects (e.g., ``'sampling_R'``, ``'hcd_model__INHCD_PE_0'``).
 
 4. ``interface``: An object defining *how to run* this model.
 
@@ -495,4 +492,4 @@ This section provides a brief overview of the Dakota methods used in the tutoria
 
 .. _multifidelity_sampling: https://snl-dakota.github.io/docs/latest_release/users/usingdakota/reference/method-multifidelity_sampling.html#multifidelity-sampling
 .. _multifidelity_polynomial_chaos: https://snl-dakota.github.io/docs/latest_release/users/usingdakota/reference/method-multifidelity_polynomial_chaos.html#multifidelity-polynomial-chaos
-.. _surrogate_global_correction: https://snl-dakota.github.io/docs/latest_release/users/usingdakota/reference/model-surrogate-global-correction.html#correction
+.. _correction: https://snl-dakota.github.io/docs/latest_release/users/usingdakota/reference/model-surrogate-global-correction.html#correction
