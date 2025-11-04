@@ -1,5 +1,5 @@
 ========================================================================
-FREDA-UQ: A Multi-Fidelity UQ Framework for the Integrated Plasma Simulator (IPS)
+A Multi-Fidelity UQ Framework for the Integrated Plasma Simulator (IPS)
 ========================================================================
 
 .. contents:: Table of Contents
