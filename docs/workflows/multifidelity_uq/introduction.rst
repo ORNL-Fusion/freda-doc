@@ -457,10 +457,11 @@ This section provides a brief overview of the Dakota methods used in the tutoria
   :math:`T_i`) from the PCE coefficients, which is far cheaper than running a
   full Monte Carlo study to get them.
 
-     * **Main effect** (:math:`S_i`): Fraction of variance from :math:`x_i`
-     alone.
-     * **Total effect** (:math:`T_i`): Fraction of variance from :math:`x_i`
-     *and* all its interactions.
+    * **Main effect** (:math:`S_i`): Fraction of variance from :math:`x_i`
+    alone.
+
+    * **Total effect** (:math:`T_i`): Fraction of variance from :math:`x_i`
+    *and* all its interactions.
 
 ---
 
