@@ -252,6 +252,7 @@ Each fidelity object has 5 required keys:
 2.  ``cost``: A number representing the relative computational cost (e.g., ``2.5`` for LF, ``204.0`` for HF).
 
 3.  ``variables``: An object defining the uncertain inputs for *this model*.
+
     * This is where you list your parameters (e.g., ``"uniform_uncertain": 10``), their bounds (``"lower_bounds": [...]``, ``"upper_bounds": [...]``), and their names (``"descriptors": [...]``).
     * CRITICAL: The descriptors (names) must match what the IPS workflow expects (e.g., ``'sampling_R'``, ``'hcd_model__INHCD_PE_0'``).
 
@@ -260,6 +261,7 @@ Each fidelity object has 5 required keys:
      * The ``work_directory`` ``named`` key (e.g., ``'fidelity1_nfreya_wd'``) tells the IPS which workflow to execute for this fidelity.
 
 5.  ``responses``: An object defining the outputs from *this model*.
+
     * ``"response_functions": 3`` (must match the number of descriptors).
     * ``"descriptors": ["'h98'", "'pnet'", "'fni'"]`` (must match the output names from the IPS workflow).
 
@@ -350,7 +352,10 @@ This section provides a brief overview of the Dakota methods used in the tutoria
         :math:`R = (\sum \alpha^{LF}_i \Psi_i) + (\sum \delta_i \Psi_i)`.
     2.  It runs samples at both LF and HF model fidelities to solve for the coefficients (:math:`\alpha` and :math:`\delta`) of this combined expansion.
     3.  By setting ``"variance_based_decomp": true`` in the JSON, you instruct Dakota to use this final PCE to perform Variance-Based Decomposition (VBD).
-    4.  VBD analytically computes the **Sobol Indices** (:math:`S_i` and :math:`T_i`) from the PCE coefficients, which is far cheaper than running a full Monte Carlo study to get them.
+    4.  VBD analytically computes the **Sobol Indices** (:math:`S_i` and
+        :math:`T_i`) from the PCE coefficients, which is far cheaper than
+              running a full Monte Carlo study to get them.
+
         * **Main effect** (:math:`S_i`): Fraction of variance from :math:`x_i` alone.
         * **Total effect** (:math:`T_i`): Fraction of variance from :math:`x_i` *and* all its interactions.
 
