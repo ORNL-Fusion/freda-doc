@@ -440,15 +440,14 @@ This section provides a brief overview of the Dakota methods used in the tutoria
     of the low-fidelity model plus a *discrepancy* function: :math:`R = (\sum
     \alpha^{LF}_i \Psi_i) + (\sum \delta_i \Psi_i)`.
     2. It runs samples at both LF and HF model fidelities to solve for the
-        coefficients (:math:`\alpha` and :math:`\delta`) of this combined
-        expansion.
+    coefficients (:math:`\alpha` and :math:`\delta`) of this combined
+    expansion.
     3. By setting ``"variance_based_decomp": true`` in the JSON, you instruct
-        Dakota to use this final PCE to perform Variance-Based Decomposition
-        (VBD).
+    Dakota to use this final PCE to perform Variance-Based Decomposition
+    (VBD).
     4. VBD analytically computes the **Sobol Indices** (:math:`S_i` and
     :math:`T_i`) from the PCE coefficients, which is far cheaper than running a
     full Monte Carlo study to get them.
-
         * **Main effect** (:math:`S_i`): Fraction of variance from :math:`x_i`
           alone.
         * **Total effect** (:math:`T_i`): Fraction of variance from :math:`x_i`
