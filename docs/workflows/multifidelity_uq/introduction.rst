@@ -459,7 +459,6 @@ This section provides a brief overview of the Dakota methods used in the tutoria
 
      * **Main effect** (:math:`S_i`): Fraction of variance from :math:`x_i`
      alone.
-
      * **Total effect** (:math:`T_i`): Fraction of variance from :math:`x_i`
      *and* all its interactions.
 
