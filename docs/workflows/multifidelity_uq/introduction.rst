@@ -415,19 +415,23 @@ This section provides a brief overview of the Dakota methods used in the tutoria
 * **Core theory:** This method implements a Control Variate (CV) Monte Carlo
   simulation.
 * **How it works:**
+
   1. A standard Monte Carlo estimator :math:`\hat{Q}_{HF}^{MC}` has a variance
   of :math:`\frac{\mathbb{V}ar(Q_{HF})}{N}`.
+
   2. We can define a new, better estimator using our cheap LF model
   (:math:`Q_{LF}`) as a control variate: :math:`\hat{Q}_{HF}^{CV} =
   \hat{Q}_{HF}^{MC} - \beta (\hat{Q}_{LF}^{MC} - \mathbb{E}[Q_{LF}])`.
+
   3. The variance of this new estimator is
   :math:`\mathbb{V}ar(\hat{Q}_{HF}^{CV}) = \mathbb{V}ar(\hat{Q}_{HF}^{MC})
-  \times (1-\rho^2)`, where :math:`\rho` is the Pearson correlation
-  coefficient between the HF and LF models.
+  \times (1-\rho^2)`, where :math:`\rho` is the Pearson correlation coefficient
+  between the HF and LF models.
+
   4. Your framework runs a small number of ``pilot_samples`` (defined in the
-  JSON) to estimate this correlation :math:`\rho` and the model costs. It
-  then solves an optimization problem to find the best number of HF and LF
-  samples to run to achieve the target accuracy for the minimum cost.
+  JSON) to estimate this correlation :math:`\rho` and the model costs. It then
+  solves an optimization problem to find the best number of HF and LF samples to
+  run to achieve the target accuracy for the minimum cost.
 
 6.2. NBI demo: ``multifidelity_polynomial_chaos`` (GSA)
 ------------------------------------------------------
