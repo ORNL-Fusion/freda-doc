@@ -50,8 +50,8 @@ As part of the Fusion REactor Design and Assessment (FREDA) project, our goal is
 ======================
 
 This framework is designed to run two primary types of UQ analyses, both of
-which use low-fidelity models to accelerate the study. New capabilities are
-added in time.
+which use low-fidelity models to accelerate the study. Future versions will
+include additional capabilities.
 
 2.1. Use case 1: Multi-fidelity Monte Carlo (MFMC)
 ---------------------------------------------------
@@ -86,12 +86,19 @@ Before running a study, ensure you have:
 3.  The path to the Dakota executable: ``/global/homes/l/ladamia/.local/bin/dakota``.
 4.  The workflow files for your chosen demonstration (e.g., the ``NBI_demo`` or ``SOL_demo`` directory).
 
-The conda environment in (2.) loads Dakota 6.15, which does not have access to the latest multi-fidelity capabilities. Regarding (3.), I built Dakota 6.20 in my local home. For now, you have to provide your own Dakota 6.20 or newer (ask me if you need help with that). I will be shipping this version of newer as part of the env in a future update.
+The conda environment in (2.) loads Dakota 6.15, which does not have access to
+the latest multi-fidelity capabilities. Regarding (3.), I built Dakota 6.20 in
+my local home. For now, you need to provide your own execitable for Dakota 6.20
+or newer (ask me if you need help with that). In future versions, Dakota 6.20+
+will be shipped in the Conda env to streamline the workflow (this will be
+completely transparent for the user).
 
 3.2. Core file architecture
 -----------------------------
 
-Every study in this framework consists of three key files. **You only need to edit the first file.**
+Every study in this framework consists of three key files. **You only need to
+edit the first file.** In future versions, the other two files will be included
+in the Conda env (this will be completely transparent for the user).
 
 1.  ``dakota_config.json`` (The "What")
 
