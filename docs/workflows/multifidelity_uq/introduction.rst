@@ -330,17 +330,14 @@ Each fidelity object has 5 required keys:
     ``2.5`` for LF, ``204.0`` for HF).
 
 3. ``variables``: An object defining the uncertain inputs for *this model*.
-
     * This is where you list your parameters (e.g., ``"uniform_uncertain": 10``), their bounds (``"lower_bounds": [...]``, ``"upper_bounds":[...]``), and their names (``"descriptors": [...]``).
     * CRITICAL: The descriptors (names) must match what the IPS workflow expects (e.g., ``'sampling_R'``, ``'hcd_model__INHCD_PE_0'``).
 
 4. ``interface``: An object defining *how to run* this model.
-
      * The ``work_directory`` ``named`` key (e.g., ``'fidelity1_nfreya_wd'``)
        tells the IPS which workflow to execute for this fidelity.
 
 5. ``responses``: An object defining the outputs from *this model*.
-
     * ``"response_functions": 3`` (must match the number of descriptors).
     * ``"descriptors": ["'h98'", "'pnet'", "'fni'"]`` (must match the output
       names from the IPS workflow).
