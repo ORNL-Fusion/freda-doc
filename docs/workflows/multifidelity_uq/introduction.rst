@@ -7,10 +7,15 @@ FREDA-UQ: A Multi-Fidelity UQ Framework for the Integrated Plasma Simulator (IPS
 Contact
 =======
 
-For questions regarding these new capabilities, multi-fidelity uncertainty quantification, or the Dakota software, please contact:
+For questions regarding these new capabilities,  please contact:
 
-* **Luis Damiano** (ladamia@sandia.gov)
-* **Mike Eldred** (mseldre@sandia.gov)
+* **Luis Damiano** (ladamia@sandia.gov) †
+* **Mike Eldred** (mseldre@sandia.gov) †
+* **Cami Collins** (collinscs@ornl.gov)
+* **Jin Myung Park** (parkjm@ornl.gov)
+* **Chris Holland** (chholland@ucsd.edu)
+
+† POCs for multi-fidelity uncertainty quantification, or the Dakota software.
 
 1. Introduction
 ===============
