@@ -10,6 +10,7 @@ Welcome to FREDA's Documentation!
    materials
    engineering
    geometry
+   uncertainty_quantification
    workflows
    ips
 
