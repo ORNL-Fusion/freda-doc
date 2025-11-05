@@ -1,5 +1,5 @@
 ========================================================================
-A Multi-Fidelity UQ Framework for the Integrated Plasma Simulator (IPS)
+Built-in Multi-Fidelity Uncertainty Quantification Capabilities
 ========================================================================
 
 .. contents:: Table of Contents
