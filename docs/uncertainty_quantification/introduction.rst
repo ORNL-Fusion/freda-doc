@@ -256,7 +256,7 @@ for ``PNet`` and ``fNI``.
 ---
 
 5. Configuration guide: ``dakota_config.json``
-============================================
+===============================================
 
 This is the most important file for customizing your own study. It is a simple
 JSON object with four top-level keys.
@@ -409,7 +409,7 @@ defines both a low-fidelity (``LF``) and high-fidelity (``HF``) model.
 This section provides a brief overview of the Dakota methods used in the tutorials.
 
 6.1. SOL demo: ``multifidelity_sampling`` (MFMC)
------------------------------------------------
+------------------------------------------------
 
 * **Dakota method:** `multifidelity_sampling`_
 * **Core theory:** This method implements a Control Variate (CV) Monte Carlo
@@ -434,7 +434,7 @@ This section provides a brief overview of the Dakota methods used in the tutoria
   run to achieve the target accuracy for the minimum cost.
 
 6.2. NBI demo: ``multifidelity_polynomial_chaos`` (GSA)
-------------------------------------------------------
+-------------------------------------------------------
 
 * **Dakota method:** `multifidelity_polynomial_chaos`_
 * **Core theory:** This method builds a surrogate model called a Polynomial
@@ -457,11 +457,10 @@ This section provides a brief overview of the Dakota methods used in the tutoria
   :math:`T_i`) from the PCE coefficients, which is far cheaper than running a
   full Monte Carlo study to get them.
 
-    * **Main effect** (:math:`S_i`): Fraction of variance from :math:`x_i`
-    alone.
+    * **Main effect** (:math:`S_i`): Fraction of variance from :math:`x_i` alone.
 
-    * **Total effect** (:math:`T_i`): Fraction of variance from :math:`x_i`
-    *and* all its interactions.
+    * **Total effect** (:math:`T_i`): Fraction of variance from :math:`x_i` *and* all its interactions.
+
 
 ---
 
