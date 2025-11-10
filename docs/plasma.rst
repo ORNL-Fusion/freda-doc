@@ -7,5 +7,6 @@ Plasma
    :caption: Contents:
 
    plasma/introduction
+   plasma/ipsfastran
    plasma/bout
 
