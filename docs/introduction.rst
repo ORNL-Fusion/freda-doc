@@ -74,10 +74,29 @@ requirements while maintaining data provenance and
 reproducibility. The framework currently runs on NERSC's Perlmutter
 supercomputer and prioritizes open-source tools wherever feasible.
 
+Philosophy: Orchestration, Not Full Automation
+----------------------------------------------
+
+FREDA's goal is not complete automation but rather **orchestrated,
+traceable workflows** that:
+
+* Handle geometry and data translation automatically (plasma flux → wall heat-flux maps → CFD meshes → neutronics)
+* Maintain rigorous provenance tracking (code versions, inputs, assumptions)
+* Automate parameter scans, UQ, and sensitivity analysis
+* Use standardized APIs enabling reproduction and extension without domain expertise in every code
+* Reduce bottlenecks so experts can focus on interpretation rather than tedious file handling
+
+Most physics and engineering codes require expert judgment for setup,
+boundary assumptions, calibration, convergence assessment, and
+interpretation. Forcing complete automation risks "garbage in →
+garbage out" scenarios. FREDA instead enables experts to work more
+efficiently within a well-structured, reproducible framework.
+
+
 Critical Physics Challenges
 ---------------------------
 
-FREDA development is driven by specific fusion power plant (FPP) challenges that require integrated modeling:
+FREDA's current development areas are driven by specific fusion power plant (FPP) challenges that require integrated modeling:
 
 **Impurities and "Slag" Management**
   Main wall erosion can dominate impurity influx during detached divertor operation. Solid plasma-facing components (PFCs) experience tons per year of net erosion and redeposition, with eroded material ("slag") potentially causing disruptions and retaining tritium. FREDA couples edge/SOL particle flux → neutral transport → plasma erosion and sputtering → redeposition patterns → tritium co-deposition, while thermal loads affect slag layer temperature → adhesion and exfoliation probability.
@@ -107,24 +126,6 @@ FREDA brings together expertise from multiple national laboratories, universitie
 The project is funded through both FES and ASCR programs, reflecting
 its dual focus on fusion physics and advanced computing methodologies.
 
-Philosophy: Orchestration, Not Full Automation
-----------------------------------------------
-
-FREDA's goal is not complete automation but rather **orchestrated,
-traceable workflows** that:
-
-* Handle geometry and data translation automatically (plasma flux → wall heat-flux maps → CFD meshes → neutronics)
-* Maintain rigorous provenance tracking (code versions, inputs, assumptions)
-* Automate parameter scans, UQ, and sensitivity analysis
-* Use standardized APIs enabling reproduction and extension without domain expertise in every code
-* Reduce bottlenecks so experts can focus on interpretation rather than tedious file handling
-
-Most physics and engineering codes require expert judgment for setup,
-boundary assumptions, calibration, convergence assessment, and
-interpretation. Forcing complete automation risks "garbage in →
-garbage out" scenarios. FREDA instead enables experts to work more
-efficiently within a well-structured, reproducible framework.
-
 Contributing to FREDA
 ---------------------
 
@@ -133,6 +134,6 @@ from the fusion community. Whether you are developing new physics
 models, engineering analysis capabilities, or improved workflow tools,
 the FREDA architecture provides standardized interfaces for
 integration. The project maintains open documentation, code
-repositories, and regular community workshops to facilitate
+repositories, and communicates regularly at community conferences to facilitate
 collaboration.
 
