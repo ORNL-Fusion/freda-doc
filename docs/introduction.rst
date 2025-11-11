@@ -35,8 +35,9 @@ Key Technical Capabilities
 FREDA integrates three major modeling domains:
 
 **Fusion-Plasma Physics** 
+
 Built on the open-source Integrated Plasma Simulator (IPS) framework developed in the AToM SciDAC project,
-  FREDA couples core, edge, and scrape-off layer (SOL) plasma physics codes including:
+FREDA couples core, edge, and scrape-off layer (SOL) plasma physics codes including:
   
   * Core transport: FASTRAN, TGLF, NCLASS
   * Edge physics: EPED
@@ -45,13 +46,12 @@ Built on the open-source Integrated Plasma Simulator (IPS) framework developed i
   * Heating and current drive: NUBEAM, TORAY, GENRAY
 
 **Parametric Geometry** 
-A flexible geometry engine generates consistent representations across all physics domains, including
-  systems codes, plasma equilibria, and detailed CAD models for engineering analysis. Two reactor class representations are
-  currently available (FNSF-class and ARC-class) with automated transformation capabilities.
+
+A flexible geometry engine generates consistent representations across all physics domains, including systems codes, plasma equilibria, and detailed CAD models for engineering analysis. Two reactor class representations are currently available (FNSF-class and ARC-class) with automated transformation capabilities.
 
 **Fusion-Engineering** 
-Based on the Fusion Energy Reactor Models
-  Integrator (FERMI), the engineering module integrates:
+
+Based on the Fusion Energy Reactor Models Integrator (FERMI), the engineering module integrates:
   
   * Neutronics and tritium breeding: MCNP, SHIFT
   * Thermal hydraulics: OpenFOAM
