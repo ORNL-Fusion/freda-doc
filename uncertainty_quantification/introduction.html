@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Built-in Multi-Fidelity Uncertainty Quantification Capabilities &mdash; FREDA 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Workflows" href="../workflows.html" />
+    <link rel="prev" title="Uncertainty Quantification" href="../uncertainty_quantification.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            FREDA
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plasma.html">Plasma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../materials.html">Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../engineering.html">Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geometry.html">Geometry</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../uncertainty_quantification.html">Uncertainty Quantification</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Built-in Multi-Fidelity Uncertainty Quantification Capabilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#contact">Contact</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">1. Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#what-is-this-framework">1.1. What is this framework?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-goal-better-designs-faster">1.2. The goal: Better designs, faster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-read-this-guide">1.3. How to read this guide</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conceptual-overview">2. Conceptual overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#use-case-1-multi-fidelity-monte-carlo-mfmc">2.1. Use case 1: Multi-fidelity Monte Carlo (MFMC)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-case-2-global-sensitivity-analysis-gsa">2.2. Use case 2: Global sensitivity analysis (GSA)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-started">3. Getting started</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#prerequisites">3.1. Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#core-file-architecture">3.2. Core file architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#general-workflow">3.3. General workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#step-by-step-tutorials">4. Step-by-step tutorials</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tutorial-1-sol-multi-fidelity-monte-carlo-mfmc">4.1. Tutorial 1: SOL multi-fidelity Monte Carlo (MFMC)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tutorial-2-nbi-global-sensitivity-analysis-gsa">4.2. Tutorial 2: NBI global sensitivity analysis (GSA)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-guide-dakota-config-json">5. Configuration guide: <code class="docutils literal notranslate"><span class="pre">dakota_config.json</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#study-id">5.1. <code class="docutils literal notranslate"><span class="pre">study_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#method">5.2. <code class="docutils literal notranslate"><span class="pre">method</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hierarchy">5.3. <code class="docutils literal notranslate"><span class="pre">hierarchy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fidelities">5.4. <code class="docutils literal notranslate"><span class="pre">fidelities</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#technical-reference">6. Technical reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sol-demo-multifidelity-sampling-mfmc">6.1. SOL demo: <code class="docutils literal notranslate"><span class="pre">multifidelity_sampling</span></code> (MFMC)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nbi-demo-multifidelity-polynomial-chaos-gsa">6.2. NBI demo: <code class="docutils literal notranslate"><span class="pre">multifidelity_polynomial_chaos</span></code> (GSA)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#advanced-topics-troubleshooting">7. Advanced topics &amp; troubleshooting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#analyzing-output-files">7.1. Analyzing output files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#common-errors">7.2. Common errors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ips.html">IPS Framework</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FREDA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../uncertainty_quantification.html">Uncertainty Quantification</a></li>
+      <li class="breadcrumb-item active">Built-in Multi-Fidelity Uncertainty Quantification Capabilities</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/uncertainty_quantification/introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="built-in-multi-fidelity-uncertainty-quantification-capabilities">
+<h1><a class="toc-backref" href="#id1" role="doc-backlink">Built-in Multi-Fidelity Uncertainty Quantification Capabilities</a><a class="headerlink" href="#built-in-multi-fidelity-uncertainty-quantification-capabilities" title="Permalink to this heading"></a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#built-in-multi-fidelity-uncertainty-quantification-capabilities" id="id1">Built-in Multi-Fidelity Uncertainty Quantification Capabilities</a></p>
+<ul>
+<li><p><a class="reference internal" href="#contact" id="id2">Contact</a></p></li>
+<li><p><a class="reference internal" href="#introduction" id="id3">1. Introduction</a></p>
+<ul>
+<li><p><a class="reference internal" href="#what-is-this-framework" id="id4">1.1. What is this framework?</a></p></li>
+<li><p><a class="reference internal" href="#the-goal-better-designs-faster" id="id5">1.2. The goal: Better designs, faster</a></p></li>
+<li><p><a class="reference internal" href="#how-to-read-this-guide" id="id6">1.3. How to read this guide</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#conceptual-overview" id="id7">2. Conceptual overview</a></p>
+<ul>
+<li><p><a class="reference internal" href="#use-case-1-multi-fidelity-monte-carlo-mfmc" id="id8">2.1. Use case 1: Multi-fidelity Monte Carlo (MFMC)</a></p></li>
+<li><p><a class="reference internal" href="#use-case-2-global-sensitivity-analysis-gsa" id="id9">2.2. Use case 2: Global sensitivity analysis (GSA)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#getting-started" id="id10">3. Getting started</a></p>
+<ul>
+<li><p><a class="reference internal" href="#prerequisites" id="id11">3.1. Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#core-file-architecture" id="id12">3.2. Core file architecture</a></p></li>
+<li><p><a class="reference internal" href="#general-workflow" id="id13">3.3. General workflow</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#step-by-step-tutorials" id="id14">4. Step-by-step tutorials</a></p>
+<ul>
+<li><p><a class="reference internal" href="#tutorial-1-sol-multi-fidelity-monte-carlo-mfmc" id="id15">4.1. Tutorial 1: SOL multi-fidelity Monte Carlo (MFMC)</a></p></li>
+<li><p><a class="reference internal" href="#tutorial-2-nbi-global-sensitivity-analysis-gsa" id="id16">4.2. Tutorial 2: NBI global sensitivity analysis (GSA)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#configuration-guide-dakota-config-json" id="id17">5. Configuration guide: <code class="docutils literal notranslate"><span class="pre">dakota_config.json</span></code></a></p>
+<ul>
+<li><p><a class="reference internal" href="#study-id" id="id18">5.1. <code class="docutils literal notranslate"><span class="pre">study_id</span></code></a></p></li>
+<li><p><a class="reference internal" href="#method" id="id19">5.2. <code class="docutils literal notranslate"><span class="pre">method</span></code></a></p></li>
+<li><p><a class="reference internal" href="#hierarchy" id="id20">5.3. <code class="docutils literal notranslate"><span class="pre">hierarchy</span></code></a></p></li>
+<li><p><a class="reference internal" href="#fidelities" id="id21">5.4. <code class="docutils literal notranslate"><span class="pre">fidelities</span></code></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#technical-reference" id="id22">6. Technical reference</a></p>
+<ul>
+<li><p><a class="reference internal" href="#sol-demo-multifidelity-sampling-mfmc" id="id23">6.1. SOL demo: <code class="docutils literal notranslate"><span class="pre">multifidelity_sampling</span></code> (MFMC)</a></p></li>
+<li><p><a class="reference internal" href="#nbi-demo-multifidelity-polynomial-chaos-gsa" id="id24">6.2. NBI demo: <code class="docutils literal notranslate"><span class="pre">multifidelity_polynomial_chaos</span></code> (GSA)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#advanced-topics-troubleshooting" id="id25">7. Advanced topics &amp; troubleshooting</a></p>
+<ul>
+<li><p><a class="reference internal" href="#analyzing-output-files" id="id26">7.1. Analyzing output files</a></p></li>
+<li><p><a class="reference internal" href="#common-errors" id="id27">7.2. Common errors</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="contact">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Contact</a><a class="headerlink" href="#contact" title="Permalink to this heading"></a></h2>
+<p>For questions regarding these new capabilities,  please contact:</p>
+<ul class="simple">
+<li><p><strong>Luis Damiano</strong> (<a class="reference external" href="mailto:ladamia&#37;&#52;&#48;sandia&#46;gov">ladamia<span>&#64;</span>sandia<span>&#46;</span>gov</a>) †</p></li>
+<li><p><strong>Mike Eldred</strong> (<a class="reference external" href="mailto:mseldre&#37;&#52;&#48;sandia&#46;gov">mseldre<span>&#64;</span>sandia<span>&#46;</span>gov</a>) †</p></li>
+<li><p><strong>Cami Collins</strong> (<a class="reference external" href="mailto:collinscs&#37;&#52;&#48;ornl&#46;gov">collinscs<span>&#64;</span>ornl<span>&#46;</span>gov</a>)</p></li>
+<li><p><strong>Jin Myung Park</strong> (<a class="reference external" href="mailto:parkjm&#37;&#52;&#48;ornl&#46;gov">parkjm<span>&#64;</span>ornl<span>&#46;</span>gov</a>)</p></li>
+<li><p><strong>Chris Holland</strong> (<a class="reference external" href="mailto:chholland&#37;&#52;&#48;ucsd&#46;edu">chholland<span>&#64;</span>ucsd<span>&#46;</span>edu</a>)</p></li>
+</ul>
+<p>† POCs for multi-fidelity uncertainty quantification, or the Dakota software.</p>
+</section>
+<section id="introduction">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">1. Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<section id="what-is-this-framework">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">1.1. What is this framework?</a><a class="headerlink" href="#what-is-this-framework" title="Permalink to this heading"></a></h3>
+<p>This capability includes a set of tools for performing advanced Uncertainty
+Quantification (UQ) and Sensitivity Analysis (SA) for fusion energy models
+within the Integrated Plasma Simulator (IPS).</p>
+<p>It provides a user-friendly framework that automates complex multi-fidelity
+analyses by connecting the Dakota toolkit to IPS workflows. The interface with
+Dakota has been abstracted so that a user can define an entire UQ study in a
+JSON configuration file.</p>
+</section>
+<section id="the-goal-better-designs-faster">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">1.2. The goal: Better designs, faster</a><a class="headerlink" href="#the-goal-better-designs-faster" title="Permalink to this heading"></a></h3>
+<p>As part of the Fusion REactor Design and Assessment (FREDA) project, our goal is
+to make UQ a standard part of the design process. This framework helps
+physicists and engineers answer critical design questions with confidence, such
+as:</p>
+<ul class="simple">
+<li><p>“How precise is our prediction?” What is the statistical uncertainty on a key
+metric, like divertor heat flux?</p></li>
+<li><p>“Which parameters matter most?” What are the most powerful “knobs” we can turn
+to optimize our design?</p></li>
+<li><p>“How can we save computational cost?” How can we use cheap, low-fidelity (LF)
+models to reduce the number of expensive, high-fidelity (HF) simulations we
+need to run?</p></li>
+</ul>
+</section>
+<section id="how-to-read-this-guide">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">1.3. How to read this guide</a><a class="headerlink" href="#how-to-read-this-guide" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>To understand the “why”</strong>: Read Section 2. Conceptual overview.</p></li>
+<li><p><strong>To run a pre-built demo</strong>: Read Section 3. Getting started and Section 4.
+Step-by-step tutorials.</p></li>
+<li><p><strong>To create your own study</strong>: Read Section 5. Configuration guide in detail.</p></li>
+<li><p><strong>For the theory</strong>: Read Section 6. Technical reference for a deeper dive into
+the methods.</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="conceptual-overview">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">2. Conceptual overview</a><a class="headerlink" href="#conceptual-overview" title="Permalink to this heading"></a></h2>
+<p>This framework is designed to run two primary types of UQ analyses, both of
+which use low-fidelity models to accelerate the study. Future versions will
+include additional capabilities.</p>
+<section id="use-case-1-multi-fidelity-monte-carlo-mfmc">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">2.1. Use case 1: Multi-fidelity Monte Carlo (MFMC)</a><a class="headerlink" href="#use-case-1-multi-fidelity-monte-carlo-mfmc" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>What it is:</strong> A method for calculating statistical metrics (like the mean or
+standard error) of a simulation output. It is a Control Variate (CV)
+technique, where a cheap, low-fidelity (LF) model is used as a “control” to
+correct the statistical error from a small number of expensive, high-fidelity
+(HF) runs.</p></li>
+<li><p><strong>The payoff:</strong> The variance of the final estimate is reduced by a factor of
+<span class="math notranslate nohighlight">\((1-\rho^2)\)</span>, where <span class="math notranslate nohighlight">\(\rho\)</span> is the Pearson correlation coefficient
+between the HF and LF models. A stronger correlation gives a greater speedup.</p></li>
+<li><p><strong>Demonstration:</strong> The <strong>Scrape-Off Layer (SOL) Demo</strong> (see Tutorial 1) uses
+this method to get a high-precision estimate for divertor heat flux
+(<code class="docutils literal notranslate"><span class="pre">qe_div</span></code>). It combines the C1 (LF) and SOLPS (HF) models and achieves a
+more precise result than a standard Monte Carlo run of equivalent cost.</p></li>
+</ul>
+</section>
+<section id="use-case-2-global-sensitivity-analysis-gsa">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">2.2. Use case 2: Global sensitivity analysis (GSA)</a><a class="headerlink" href="#use-case-2-global-sensitivity-analysis-gsa" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>What it is:</strong> A method to determine how much of the uncertainty (variance)
+in an output is caused by the uncertainty in each input parameter. This is
+formally known as Variance-Based Decomposition (VBD).</p></li>
+<li><p><strong>The payoff:</strong> The analysis produces <strong>Sobol Indices</strong> for each parameter.
+The two most important are:</p>
+<ul>
+<li><p><strong>Main effect</strong> (<span class="math notranslate nohighlight">\(S_i\)</span>): The fraction of output variance caused by the
+input parameter <span class="math notranslate nohighlight">\(x_i\)</span> <em>alone</em>.</p></li>
+<li><p><strong>Total effect</strong> (<span class="math notranslate nohighlight">\(T_i\)</span>): The fraction of output variance caused by
+the input parameter <span class="math notranslate nohighlight">\(x_i\)</span> <em>plus all of its interactions</em> with other
+parameters.</p></li>
+</ul>
+</li>
+<li><p><strong>Demonstration:</strong> The <strong>Neutral Beam Injection (NBI) Demo</strong> (see Tutorial 2)
+uses GSA to find which of 10 input parameters have the biggest impact on Net
+Electric Power (<code class="docutils literal notranslate"><span class="pre">PNet</span></code>) and Non-inductive Current Fraction (<code class="docutils literal notranslate"><span class="pre">fNI</span></code>). It
+uses NFREYA (LF) and NUBEAM (HF) to build a multi-fidelity “polynomial chaos
+expansion” (PCE) to compute these indices efficiently.</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="getting-started">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">3. Getting started</a><a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h2>
+<section id="prerequisites">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">3.1. Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h3>
+<p>Before running a study, ensure you have:</p>
+<ol class="arabic simple">
+<li><p>Access to NERSC Perlmutter.</p></li>
+<li><dl class="simple">
+<dt>The path to the required conda environment:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">/global/common/software/atom/perlmutter/cesol/conda/dev</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>The path to the Dakota executable:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">/global/homes/l/ladamia/.local/bin/dakota</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>The workflow files for your chosen demonstration (e.g., the <code class="docutils literal notranslate"><span class="pre">NBI_demo</span></code> or</dt><dd><p><code class="docutils literal notranslate"><span class="pre">SOL_demo</span></code> directory).</p>
+</dd>
+</dl>
+</li>
+</ol>
+<p>The conda environment in (2.) loads Dakota 6.15, which does not have access to
+the latest multi-fidelity capabilities. Regarding (3.), I built Dakota 6.20 in
+my local directory. For now, you need to provide your own execitable for Dakota
+6.20 or newer (ask me if you need help with that). In future versions, Dakota
+6.20+ will be shipped in the conda env to streamline the workflow (this will be
+completely transparent for the user).</p>
+</section>
+<section id="core-file-architecture">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">3.2. Core file architecture</a><a class="headerlink" href="#core-file-architecture" title="Permalink to this heading"></a></h3>
+<p>Every study in this framework consists of three key files. In future versions,
+the third file will be included in the conda env (this will be out of sight for
+the final user).</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dakota_config.json</span></code> (The “What”)</p>
+<ul class="simple">
+<li><p><strong>Purpose:</strong> This is the <em>only file you edit</em>. It is the user-facing
+“control panel” where you define the entire study.</p></li>
+<li><p><strong>Content:</strong> You specify the UQ method, list your HF/LF models, define
+their costs, and list all input variables and output responses.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run_study.sh</span></code> (The “Executor”)</p>
+<ul class="simple">
+<li><p><strong>Purpose:</strong> This is the Slurm batch script that runs the entire
+end-to-end workflow on Perlmutter.</p></li>
+<li><p><strong>Action:</strong> You edit this file to change Slurm allocation request info.
+You submit this script to the queue using <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>.</p></li>
+</ul>
+</li>
+</ol>
+<ol class="arabic simple" start="2">
+<li><p><code class="docutils literal notranslate"><span class="pre">dakota_ips_config.py</span></code> (The “How”)</p>
+<ul class="simple">
+<li><p><strong>Purpose:</strong> This is the “translator” script. It reads your simple
+<code class="docutils literal notranslate"><span class="pre">dakota_config.json</span></code> and automatically writes the complex <code class="docutils literal notranslate"><span class="pre">dakota.in</span></code>
+file that Dakota needs.</p></li>
+<li><p><strong>Action:</strong> <em>Do not edit or execute this file.</em> This file is called by
+<code class="docutils literal notranslate"><span class="pre">run_study.sh</span></code>. User can safely disregard this file.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="general-workflow">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">3.3. General workflow</a><a class="headerlink" href="#general-workflow" title="Permalink to this heading"></a></h3>
+<p>Running <em>any</em> study follows the same 4 steps:</p>
+<ol class="arabic">
+<li><dl class="simple">
+<dt><strong>Configure:</strong> Prepare your study directory (e.g., <code class="docutils literal notranslate"><span class="pre">my_nbi_study/</span></code>). Ensure</dt><dd><p>it contains the three core files (<code class="docutils literal notranslate"><span class="pre">.json</span></code>, <code class="docutils literal notranslate"><span class="pre">.py</span></code>, <code class="docutils literal notranslate"><span class="pre">.sh</span></code>) and any
+necessary model files (e.g., <code class="docutils literal notranslate"><span class="pre">fidelity1_nfreya/</span></code>, <code class="docutils literal notranslate"><span class="pre">fidelity2_nubeam/</span></code>).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Edit:</strong> Open <code class="docutils literal notranslate"><span class="pre">dakota_config.json</span></code> and edit the parameters, variables, or</dt><dd><p>method as needed for your study.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Submit:</strong> From your study directory, submit the executor script to the</dt><dd><p>Slurm scheduler:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sbatch<span class="w"> </span>run_study.sh
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Analyze:</strong> Once the job finishes, all results will be collected in a new</dt><dd><p><code class="docutils literal notranslate"><span class="pre">study/</span></code> directory. You can then analyze the output files (e.g.,
+<code class="docutils literal notranslate"><span class="pre">study_tabular.dat</span></code> or <code class="docutils literal notranslate"><span class="pre">dakota_output.out</span></code>).</p>
+</dd>
+</dl>
+</li>
+</ol>
+<p>—</p>
+</section>
+</section>
+<section id="step-by-step-tutorials">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">4. Step-by-step tutorials</a><a class="headerlink" href="#step-by-step-tutorials" title="Permalink to this heading"></a></h2>
+<section id="tutorial-1-sol-multi-fidelity-monte-carlo-mfmc">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">4.1. Tutorial 1: SOL multi-fidelity Monte Carlo (MFMC)</a><a class="headerlink" href="#tutorial-1-sol-multi-fidelity-monte-carlo-mfmc" title="Permalink to this heading"></a></h3>
+<p>This tutorial replicates the analysis from the Q4 report, estimating divertor
+heat flux using C1 and SOLPS.</p>
+<ol class="arabic">
+<li><dl class="simple">
+<dt><strong>Copy files:</strong> Create a new directory (e.g., <code class="docutils literal notranslate"><span class="pre">my_sol_demo</span></code>) and copy the</dt><dd><p>contents of the <code class="docutils literal notranslate"><span class="pre">SOL_demo</span></code> directory into it.</p>
+</dd>
+</dl>
+</li>
+<li><p><strong>Inspect configuration:</strong> Open <code class="docutils literal notranslate"><span class="pre">dakota_config.json</span></code>. You will see:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">method</span></code> block specifies <code class="docutils literal notranslate"><span class="pre">&quot;multifidelity_sampling&quot;</span></code>. This tells
+Dakota to run the Control Variate method.</p></li>
+<li><p>It also specifies <code class="docutils literal notranslate"><span class="pre">&quot;pilot_samples&quot;:</span> <span class="pre">16</span></code>, which matches the 16 initial HF
+samples used in the Q4 report to estimate the correlation.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">fidelities</span></code> list defines <code class="docutils literal notranslate"><span class="pre">LF</span></code> (C1 model) and <code class="docutils literal notranslate"><span class="pre">HF</span></code> (SOLPS model)
+and their relative costs.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">responses</span></code> block lists the output: <code class="docutils literal notranslate"><span class="pre">qe_div</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Run study:</strong> Submit the job:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sbatch<span class="w"> </span>run_study.sh
+</pre></div>
+</div>
+</li>
+<li><p><strong>Analyze results:</strong></p>
+<ul class="simple">
+<li><p>When complete, check the <code class="docutils literal notranslate"><span class="pre">study/</span></code> directory.</p></li>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">dakota_output.out</span></code>.</p></li>
+<li><p>Search for the final statistics to find the computed mean value for
+<code class="docutils literal notranslate"><span class="pre">qe_div</span></code> and its <strong>standard error</strong>. You can compare this to the
+benchmark standard error (also in the file) to see the variance reduction,
+which should match the 8% improvement reported in the Q4 report.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="tutorial-2-nbi-global-sensitivity-analysis-gsa">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">4.2. Tutorial 2: NBI global sensitivity analysis (GSA)</a><a class="headerlink" href="#tutorial-2-nbi-global-sensitivity-analysis-gsa" title="Permalink to this heading"></a></h3>
+<p>This tutorial replicates the NBI analysis, finding the most important parameters
+for <code class="docutils literal notranslate"><span class="pre">PNet</span></code> and <code class="docutils literal notranslate"><span class="pre">fNI</span></code>.</p>
+<ol class="arabic">
+<li><dl class="simple">
+<dt><strong>Copy files:</strong> Create a new directory (e.g., <code class="docutils literal notranslate"><span class="pre">my_nbi_demo</span></code>) and copy the</dt><dd><p>contents of the <code class="docutils literal notranslate"><span class="pre">NBI_demo</span></code> directory into it.</p>
+</dd>
+</dl>
+</li>
+<li><p><strong>Inspect configuration:</strong> Open <code class="docutils literal notranslate"><span class="pre">dakota_config.json</span></code>. You will see:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">method</span></code> block specifies <code class="docutils literal notranslate"><span class="pre">&quot;multifidelity_polynomial_chaos&quot;</span></code>.</p></li>
+<li><p>Crucially, it also specifies <code class="docutils literal notranslate"><span class="pre">&quot;variance_based_decomp&quot;:</span> <span class="pre">true</span></code>, which is
+the keyword to activate the GSA and compute Sobol indices.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">fidelities</span></code> list defines <code class="docutils literal notranslate"><span class="pre">LF</span></code> (NFREYA) and <code class="docutils literal notranslate"><span class="pre">HF</span></code> (NUBEAM).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">variables</span></code> block defines all <strong>10 uncertain input parameters</strong>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">responses</span></code> block lists the outputs: <code class="docutils literal notranslate"><span class="pre">h98</span></code>, <code class="docutils literal notranslate"><span class="pre">pnet</span></code>, and <code class="docutils literal notranslate"><span class="pre">fni</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Run study:</strong> Submit the job:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sbatch<span class="w"> </span>run_study.sh
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><strong>Analyze results:</strong></p>
+<ul class="simple">
+<li><p>When complete, check the <code class="docutils literal notranslate"><span class="pre">study/</span></code> directory.</p></li>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">dakota_output.out</span></code>.</p></li>
+<li><p>Search for <strong>“Variance-Based Sensitivity”</strong>. This table will show you the
+<strong>Sobol indices</strong> (“Main” and “Total” effects) for each of your 10 input
+variables on each of your 3 output responses.</p></li>
+<li><p>This table quantitatively proves what the presentation chart showed:
+<code class="docutils literal notranslate"><span class="pre">fni</span></code> is dominated by <code class="docutils literal notranslate"><span class="pre">sampling_Pinj_MW</span></code>, while <code class="docutils literal notranslate"><span class="pre">pnet</span></code> is dominated
+by <code class="docutils literal notranslate"><span class="pre">sampling_q95</span></code> and <code class="docutils literal notranslate"><span class="pre">sampling_A</span></code>.</p></li>
+</ul>
+</li>
+</ol>
+<p>—</p>
+</section>
+</section>
+<section id="configuration-guide-dakota-config-json">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">5. Configuration guide: <code class="docutils literal notranslate"><span class="pre">dakota_config.json</span></code></a><a class="headerlink" href="#configuration-guide-dakota-config-json" title="Permalink to this heading"></a></h2>
+<p>This is the most important file for customizing your own study. It is a simple
+JSON object with four top-level keys.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+  &quot;study_id&quot;: &quot;...&quot;,
+  &quot;method&quot;: { ... },
+  &quot;hierarchy&quot;: { ... },
+  &quot;fidelities&quot;: [ ... ]
+}
+</pre></div>
+</div>
+<section id="study-id">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">5.1. <code class="docutils literal notranslate"><span class="pre">study_id</span></code></a><a class="headerlink" href="#study-id" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">String</span></code></p></li>
+<li><p><strong>Purpose:</strong> A unique name for your study (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;nbi_gsa_v2&quot;</span></code>). This is
+used as the prefix for all output files.</p></li>
+</ul>
+</section>
+<section id="method">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">5.2. <code class="docutils literal notranslate"><span class="pre">method</span></code></a><a class="headerlink" href="#method" title="Permalink to this heading"></a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">Object</span></code></p></li>
+<li><p><strong>Purpose:</strong> Defines <em>what</em> UQ analysis to run.</p></li>
+<li><p><strong>Example (for GSA):</strong></p>
+<blockquote>
+<div><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;model_pointer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&#39;HIERARCHY&#39;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;multifidelity_polynomial_chaos&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;allocation_control&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;greedy&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;variance_based_decomp&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;output&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;normal&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><strong>Example (for MFMC):</strong></p>
+<blockquote>
+<div><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;model_pointer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&#39;HIERARCHY&#39;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;multifidelity_sampling&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;pilot_samples&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;sample_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;random&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;max_function_evaluations&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;output&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;normal&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="hierarchy">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">5.3. <code class="docutils literal notranslate"><span class="pre">hierarchy</span></code></a><a class="headerlink" href="#hierarchy" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">Object</span></code></p></li>
+<li><p><strong>Purpose:</strong> Tells Dakota how to combine the different fidelities (e.g., as an
+<code class="docutils literal notranslate"><span class="pre">additive</span></code> correction).</p></li>
+<li><p><strong>Action:</strong> You can generally leave this unchanged as a starting point. See
+<a class="reference external" href="https://snl-dakota.github.io/docs/latest_release/users/usingdakota/reference/model-surrogate-global-correction.html#correction">correction</a>.</p></li>
+</ul>
+</section>
+<section id="fidelities">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">5.4. <code class="docutils literal notranslate"><span class="pre">fidelities</span></code></a><a class="headerlink" href="#fidelities" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">List</span></code></p></li>
+<li><p><strong>Purpose:</strong> This is where you define your models. It’s a list, where each
+item is an object representing one fidelity (one model). You must list them
+from <strong>lowest to highest fidelity</strong>.</p></li>
+</ul>
+<p>Each fidelity object has 5 required keys:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: A short string name (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;LF&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;HF&quot;</span></code>).</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">cost</span></code>: A number representing the relative computational cost (e.g.,</dt><dd><p><code class="docutils literal notranslate"><span class="pre">2.5</span></code> for LF, <code class="docutils literal notranslate"><span class="pre">204.0</span></code> for HF).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">variables</span></code>: An object defining the uncertain inputs for <em>this model</em>.</dt><dd><ul class="simple">
+<li><p>This is where you list your parameters (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;uniform_uncertain&quot;:</span> <span class="pre">10</span></code>), their bounds (<code class="docutils literal notranslate"><span class="pre">&quot;lower_bounds&quot;:</span> <span class="pre">[...]</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;upper_bounds&quot;:[...]</span></code>), and their names (<code class="docutils literal notranslate"><span class="pre">&quot;descriptors&quot;:</span> <span class="pre">[...]</span></code>).</p></li>
+<li><p>CRITICAL: The descriptors (names) must match what the IPS workflow expects (e.g., <code class="docutils literal notranslate"><span class="pre">'sampling_R'</span></code>, <code class="docutils literal notranslate"><span class="pre">'hcd_model__INHCD_PE_0'</span></code>).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">interface</span></code>: An object defining <em>how to run</em> this model.</dt><dd><ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">work_directory</span></code> <code class="docutils literal notranslate"><span class="pre">named</span></code> key (e.g., <code class="docutils literal notranslate"><span class="pre">'fidelity1_nfreya_wd'</span></code>)
+tells the IPS which workflow to execute for this fidelity.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">responses</span></code>: An object defining the outputs from <em>this model</em>.</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;response_functions&quot;:</span> <span class="pre">3</span></code> (must match the number of descriptors).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;descriptors&quot;:</span> <span class="pre">[&quot;'h98'&quot;,</span> <span class="pre">&quot;'pnet'&quot;,</span> <span class="pre">&quot;'fni'&quot;]</span></code> (must match the output
+names from the IPS workflow).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+<p>Below is an example of the <code class="docutils literal notranslate"><span class="pre">fidelities</span></code> block for the NBI tutorial, which
+defines both a low-fidelity (<code class="docutils literal notranslate"><span class="pre">LF</span></code>) and high-fidelity (<code class="docutils literal notranslate"><span class="pre">HF</span></code>) model.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w"> </span><span class="nt">&quot;fidelities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos"> 2</span><span class="w">   </span><span class="p">{</span>
+<span class="linenos"> 3</span><span class="w">     </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LF&quot;</span><span class="p">,</span>
+<span class="linenos"> 4</span><span class="w">     </span><span class="nt">&quot;cost&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span>
+<span class="linenos"> 5</span><span class="w">     </span><span class="nt">&quot;variables&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 6</span><span class="w">       </span><span class="nt">&quot;uniform_uncertain&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="linenos"> 7</span><span class="w">       </span><span class="nt">&quot;lower_bounds&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.6</span><span class="p">,</span><span class="w"> </span><span class="mf">1.70</span><span class="p">,</span><span class="w"> </span><span class="mf">0.50</span><span class="p">,</span><span class="w"> </span><span class="mf">6.80</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.90</span><span class="p">,</span><span class="w"> </span><span class="mf">1.6</span><span class="p">,</span><span class="w"> </span><span class="mf">20.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="p">],</span>
+<span class="linenos"> 8</span><span class="w">       </span><span class="nt">&quot;upper_bounds&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mf">4.5</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.00</span><span class="p">,</span><span class="w"> </span><span class="mf">0.60</span><span class="p">,</span><span class="w"> </span><span class="mf">7.00</span><span class="p">,</span><span class="w"> </span><span class="mf">8.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.00</span><span class="p">,</span><span class="w"> </span><span class="mf">2.2</span><span class="p">,</span><span class="w"> </span><span class="mf">80.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="w"> </span><span class="p">],</span>
+<span class="linenos"> 9</span><span class="w">       </span><span class="nt">&quot;descriptors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos">10</span><span class="w">         </span><span class="s2">&quot;&#39;sampling_R&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;sampling_A&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;sampling_kappa&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;sampling_delta&#39;&quot;</span><span class="p">,</span>
+<span class="linenos">11</span><span class="w">         </span><span class="s2">&quot;&#39;sampling_B0&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;sampling_q95&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;sampling_fgw_ped&#39;&quot;</span><span class="p">,</span>
+<span class="linenos">12</span><span class="w">         </span><span class="s2">&quot;&#39;sampling_nepeak&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;sampling_Pinj_MW&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;sampling_Einj_keV&#39;&quot;</span>
+<span class="linenos">13</span><span class="w">       </span><span class="p">]</span>
+<span class="linenos">14</span><span class="w">     </span><span class="p">},</span>
+<span class="linenos">15</span><span class="w">     </span><span class="nt">&quot;interface&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">16</span><span class="w">       </span><span class="nt">&quot;fork&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">17</span><span class="w">         </span><span class="nt">&quot;asynchronous&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;evaluation_concurrency&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">96</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">18</span><span class="w">         </span><span class="nt">&quot;work_directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;directory_tag&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;directory_save&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;named&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;fidelity1_nfreya_wd&#39;&quot;</span><span class="p">],</span>
+<span class="linenos">19</span><span class="w">         </span><span class="nt">&quot;copy_files&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&#39;fidelity1_nfreya/*&#39;&quot;</span>
+<span class="linenos">20</span><span class="w">       </span><span class="p">}</span>
+<span class="linenos">21</span><span class="w">     </span><span class="p">},</span>
+<span class="linenos">22</span><span class="w">     </span><span class="nt">&quot;responses&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">23</span><span class="w">       </span><span class="nt">&quot;response_functions&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="linenos">24</span><span class="w">       </span><span class="nt">&quot;descriptors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;&#39;h98&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;pnet&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;fni&#39;&quot;</span><span class="p">]</span>
+<span class="linenos">25</span><span class="w">     </span><span class="p">}</span>
+<span class="linenos">26</span><span class="w">   </span><span class="p">},</span>
+<span class="linenos">27</span><span class="w">   </span><span class="p">{</span>
+<span class="linenos">28</span><span class="w">     </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HF&quot;</span><span class="p">,</span>
+<span class="linenos">29</span><span class="w">     </span><span class="nt">&quot;cost&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">204</span><span class="p">,</span>
+<span class="linenos">30</span><span class="w">     </span><span class="nt">&quot;variables&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">31</span><span class="w">       </span><span class="nt">&quot;uniform_uncertain&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="linenos">32</span><span class="w">       </span><span class="nt">&quot;lower_bounds&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.6</span><span class="p">,</span><span class="w"> </span><span class="mf">1.70</span><span class="p">,</span><span class="w"> </span><span class="mf">0.50</span><span class="p">,</span><span class="w"> </span><span class="mf">6.80</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.90</span><span class="p">,</span><span class="w"> </span><span class="mf">1.6</span><span class="p">,</span><span class="w"> </span><span class="mf">20.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="p">],</span>
+<span class="linenos">33</span><span class="w">       </span><span class="nt">&quot;upper_bounds&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mf">4.5</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.00</span><span class="p">,</span><span class="w"> </span><span class="mf">0.60</span><span class="p">,</span><span class="w"> </span><span class="mf">7.00</span><span class="p">,</span><span class="w"> </span><span class="mf">8.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.00</span><span class="p">,</span><span class="w"> </span><span class="mf">2.2</span><span class="p">,</span><span class="w"> </span><span class="mf">80.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="w"> </span><span class="p">],</span>
+<span class="linenos">34</span><span class="w">       </span><span class="nt">&quot;descriptors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos">35</span><span class="w">         </span><span class="s2">&quot;&#39;sampling_R&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;sampling_A&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;sampling_kappa&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;sampling_delta&#39;&quot;</span><span class="p">,</span>
+<span class="linenos">36</span><span class="w">         </span><span class="s2">&quot;&#39;sampling_B0&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;sampling_q95&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;sampling_fgw_ped&#39;&quot;</span><span class="p">,</span>
+<span class="linenos">37</span><span class="w">         </span><span class="s2">&quot;&#39;sampling_nepeak&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;sampling_Pinj_MW&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;sampling_Einj_keV&#39;&quot;</span>
+<span class="linenos">38</span><span class="w">       </span><span class="p">]</span>
+<span class="linenos">39</span><span class="w">     </span><span class="p">},</span>
+<span class="linenos">40</span><span class="w">     </span><span class="nt">&quot;interface&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">41</span><span class="w">       </span><span class="nt">&quot;fork&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">42</span><span class="w">         </span><span class="nt">&quot;asynchronous&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;evaluation_concurrency&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">43</span><span class="w">         </span><span class="nt">&quot;work_directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;directory_tag&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;directory_save&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;named&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;fidelity2_nubeam_wd&#39;&quot;</span><span class="p">],</span>
+<span class="linenos">44</span><span class="w">         </span><span class="nt">&quot;copy_files&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&#39;fidelity2_nubeam/*&#39;&quot;</span>
+<span class="linenos">45</span><span class="w">       </span><span class="p">}</span>
+<span class="linenos">46</span><span class="w">     </span><span class="p">},</span>
+<span class="linenos">47</span><span class="w">     </span><span class="nt">&quot;responses&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">48</span><span class="w">       </span><span class="nt">&quot;response_functions&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="linenos">49</span><span class="w">       </span><span class="nt">&quot;descriptors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;&#39;h98&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;pnet&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&#39;fni&#39;&quot;</span><span class="p">]</span>
+<span class="linenos">50</span><span class="w">     </span><span class="p">}</span>
+<span class="linenos">51</span><span class="w">   </span><span class="p">}</span>
+<span class="linenos">52</span><span class="w"> </span><span class="p">]</span>
+</pre></div>
+</div>
+<p>—</p>
+</section>
+</section>
+<section id="technical-reference">
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">6. Technical reference</a><a class="headerlink" href="#technical-reference" title="Permalink to this heading"></a></h2>
+<p>This section provides a brief overview of the Dakota methods used in the tutorials.</p>
+<section id="sol-demo-multifidelity-sampling-mfmc">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">6.1. SOL demo: <code class="docutils literal notranslate"><span class="pre">multifidelity_sampling</span></code> (MFMC)</a><a class="headerlink" href="#sol-demo-multifidelity-sampling-mfmc" title="Permalink to this heading"></a></h3>
+<ul>
+<li><p><strong>Dakota method:</strong> <a class="reference external" href="https://snl-dakota.github.io/docs/latest_release/users/usingdakota/reference/method-multifidelity_sampling.html#multifidelity-sampling">multifidelity_sampling</a></p></li>
+<li><p><strong>Core theory:</strong> This method implements a Control Variate (CV) Monte Carlo
+simulation.</p></li>
+<li><p><strong>How it works:</strong></p>
+<p>1. A standard Monte Carlo estimator <span class="math notranslate nohighlight">\(\hat{Q}_{HF}^{MC}\)</span> has a variance
+of <span class="math notranslate nohighlight">\(\frac{\mathbb{V}ar(Q_{HF})}{N}\)</span>.</p>
+<p>2. We can define a new, better estimator using our cheap LF model
+(<span class="math notranslate nohighlight">\(Q_{LF}\)</span>) as a control variate: <span class="math notranslate nohighlight">\(\hat{Q}_{HF}^{CV} =
+\hat{Q}_{HF}^{MC} - \beta (\hat{Q}_{LF}^{MC} - \mathbb{E}[Q_{LF}])\)</span>.</p>
+<p>3. The variance of this new estimator is
+<span class="math notranslate nohighlight">\(\mathbb{V}ar(\hat{Q}_{HF}^{CV}) = \mathbb{V}ar(\hat{Q}_{HF}^{MC})
+\times (1-\rho^2)\)</span>, where <span class="math notranslate nohighlight">\(\rho\)</span> is the Pearson correlation coefficient
+between the HF and LF models.</p>
+<p>4. Your framework runs a small number of <code class="docutils literal notranslate"><span class="pre">pilot_samples</span></code> (defined in the
+JSON) to estimate this correlation <span class="math notranslate nohighlight">\(\rho\)</span> and the model costs. It then
+solves an optimization problem to find the best number of HF and LF samples to
+run to achieve the target accuracy for the minimum cost.</p>
+</li>
+</ul>
+</section>
+<section id="nbi-demo-multifidelity-polynomial-chaos-gsa">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">6.2. NBI demo: <code class="docutils literal notranslate"><span class="pre">multifidelity_polynomial_chaos</span></code> (GSA)</a><a class="headerlink" href="#nbi-demo-multifidelity-polynomial-chaos-gsa" title="Permalink to this heading"></a></h3>
+<ul>
+<li><p><strong>Dakota method:</strong> <a class="reference external" href="https://snl-dakota.github.io/docs/latest_release/users/usingdakota/reference/method-multifidelity_polynomial_chaos.html#multifidelity-polynomial-chaos">multifidelity_polynomial_chaos</a></p></li>
+<li><p><strong>Core theory:</strong> This method builds a surrogate model called a Polynomial
+Chaos Expansion (PCE) to perform Global Sensitivity Analysis (GSA).</p></li>
+<li><p><strong>How it works:</strong></p>
+<p>1. The method models the high-fidelity response <span class="math notranslate nohighlight">\(R\)</span> as a combination
+of the low-fidelity model plus a <em>discrepancy</em> function: <span class="math notranslate nohighlight">\(R = (\sum
+\alpha^{LF}_i \Psi_i) + (\sum \delta_i \Psi_i)\)</span>.</p>
+<p>2. It runs samples at both LF and HF model fidelities to solve for the
+coefficients (<span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\delta\)</span>) of this combined
+expansion.</p>
+<p>3. By setting <code class="docutils literal notranslate"><span class="pre">&quot;variance_based_decomp&quot;:</span> <span class="pre">true</span></code> in the JSON, you instruct
+Dakota to use this final PCE to perform Variance-Based Decomposition
+(VBD).</p>
+<p>4. VBD analytically computes the <strong>Sobol Indices</strong> (<span class="math notranslate nohighlight">\(S_i\)</span> and
+<span class="math notranslate nohighlight">\(T_i\)</span>) from the PCE coefficients, which is far cheaper than running a
+full Monte Carlo study to get them.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Main effect</strong> (<span class="math notranslate nohighlight">\(S_i\)</span>): Fraction of variance from <span class="math notranslate nohighlight">\(x_i\)</span> alone.</p></li>
+<li><p><strong>Total effect</strong> (<span class="math notranslate nohighlight">\(T_i\)</span>): Fraction of variance from <span class="math notranslate nohighlight">\(x_i\)</span> <em>and</em> all its interactions.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="advanced-topics-troubleshooting">
+<h2><a class="toc-backref" href="#id25" role="doc-backlink">7. Advanced topics &amp; troubleshooting</a><a class="headerlink" href="#advanced-topics-troubleshooting" title="Permalink to this heading"></a></h2>
+<section id="analyzing-output-files">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">7.1. Analyzing output files</a><a class="headerlink" href="#analyzing-output-files" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dakota_output.out</span></code>: The main log file from Dakota. Contains the final
+summary tables for GSA (Sobol indices) and MFMC (statistical moments).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dakota_error.err</span></code>: Dakota-level errors.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">study_tabular.dat</span></code>: A data file with one row for every simulation run. It
+shows the input values for each parameter and the resulting output for each
+response. Very useful for plotting.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dakota_stdout.log</span></code> / <code class="docutils literal notranslate"><span class="pre">dakota_stderr.log</span></code>: Standard output from the Dakota
+process itself. Good for checking progress.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*_wd/</span></code> directories: Each simulation run creates a work directory (e.g.,
+<code class="docutils literal notranslate"><span class="pre">HF.1.1.work_dir_0/</span></code>). If a run fails, you can check the IPS and model logs
+inside this directory to debug the physics model itself.</p></li>
+</ul>
+</section>
+<section id="common-errors">
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">7.2. Common errors</a><a class="headerlink" href="#common-errors" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>“Descriptor Mismatch”: The names in your <code class="docutils literal notranslate"><span class="pre">variables</span></code> or <code class="docutils literal notranslate"><span class="pre">responses</span></code> blocks
+in the JSON file do not <em>exactly</em> match the names expected by the IPS
+workflow.</p></li>
+<li><p>“Python Script Fails”: You have a syntax error in your <code class="docutils literal notranslate"><span class="pre">dakota_config.json</span></code>
+file (like a missing comma or bracket).</p></li>
+<li><p>“Slurm Job Fails Immediately”: You have a typo in a file path in
+<code class="docutils literal notranslate"><span class="pre">run_study.sh</span></code> (e.g., the conda environment path is wrong).</p></li>
+<li><p>“Model Runs Fail”: The physics simulation itself is failing. Check the logs
+inside the individual <code class="docutils literal notranslate"><span class="pre">*_wd/</span></code> directories.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../uncertainty_quantification.html" class="btn btn-neutral float-left" title="Uncertainty Quantification" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../workflows.html" class="btn btn-neutral float-right" title="Workflows" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ORNLFusion.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

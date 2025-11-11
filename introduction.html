@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; FREDA 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Plasma" href="plasma.html" />
+    <link rel="prev" title="Welcome to FREDA’s Documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            FREDA
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-fusion-reactor-design-and-assessment-freda-project">The Fusion REactor Design and Assessment (FREDA) Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mission-and-scope">Mission and Scope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#key-technical-capabilities">Key Technical Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#framework-architecture">Framework Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#philosophy-orchestration-not-full-automation">Philosophy: Orchestration, Not Full Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#critical-physics-challenges">Critical Physics Challenges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#project-organization">Project Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contributing-to-freda">Contributing to FREDA</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plasma.html">Plasma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials.html">Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="engineering.html">Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geometry.html">Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uncertainty_quantification.html">Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflows.html">Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ips.html">IPS Framework</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FREDA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h1>
+<a class="reference internal image-reference" href="_images/freda_logo.jpg"><img alt="FREDA logo" class="align-center" src="_images/freda_logo.jpg" style="width: 400px;" /></a>
+<section id="the-fusion-reactor-design-and-assessment-freda-project">
+<h2>The Fusion REactor Design and Assessment (FREDA) Project<a class="headerlink" href="#the-fusion-reactor-design-and-assessment-freda-project" title="Permalink to this heading"></a></h2>
+<p>FREDA is a purpose-built framework for self-consistent, multi-fidelity, iterative optimization of next step fusion devices.
+FREDA connects the fusion-plasma modeling to surrounding fusion-engineering components, incorporating the theory-based integrated plasma modeling suite <strong>IPS-FASTRAN/CESOL</strong> and the multiphysics simulation tools of Fusion Energy Reactor Models Integrator (<strong>FERMI</strong>). FREDA utilizes parametric geometry to enable automatic generation of detailed parametrized CAD.</p>
+</section>
+<section id="mission-and-scope">
+<h2>Mission and Scope<a class="headerlink" href="#mission-and-scope" title="Permalink to this heading"></a></h2>
+<p>FREDA’s overarching goal is to connect plasma-materials-engineering
+modeling in ways that reveal coupled sensitivities, tolerance
+stack-ups, and system margins that would be invisible in traditional
+serial design approaches. The project initially applies to tokamaks
+and spherical tokamaks (STs), with potential future expansion to
+stellarators.</p>
+<p>The framework spans three key design phases:</p>
+<ul class="simple">
+<li><p><strong>Design Scoping</strong> (lower fidelity): Large parameter space scans to identify promising design regions</p></li>
+<li><p><strong>Design Optimization</strong> (medium fidelity): De-risking components and sub-systems through focused analysis</p></li>
+<li><p><strong>Digital Twin</strong> (high fidelity): Full systems evaluation, pulse design, and operational scenario validation</p></li>
+</ul>
+</section>
+<section id="key-technical-capabilities">
+<h2>Key Technical Capabilities<a class="headerlink" href="#key-technical-capabilities" title="Permalink to this heading"></a></h2>
+<p>FREDA integrates three major modeling domains:</p>
+<p><strong>Fusion-Plasma Physics</strong></p>
+<p>Built on the open-source Integrated Plasma Simulator (IPS) framework developed in the AToM SciDAC project,
+FREDA couples core, edge, and scrape-off layer (SOL) plasma physics codes including:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Core transport: FASTRAN, TGLF, NCLASS</p></li>
+<li><p>Edge physics: EPED</p></li>
+<li><p>SOL modeling: SOLPS-ITER, UEDGE, BOUT++/Hermes-3</p></li>
+<li><p>Equilibrium: EFIT, FreeGS</p></li>
+<li><p>Heating and current drive: NUBEAM, TORAY, GENRAY</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Parametric Geometry</strong></p>
+<p>A flexible geometry engine generates consistent representations across all physics domains, including systems codes, plasma equilibria, and detailed CAD models for engineering analysis. Two reactor class representations are currently available (FNSF-class and ARC-class) with automated transformation capabilities.</p>
+<p><strong>Fusion-Engineering</strong></p>
+<p>Based on the Fusion Energy Reactor Models Integrator (FERMI), the engineering module integrates:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Neutronics and tritium breeding: MCNP, SHIFT</p></li>
+<li><p>Thermal hydraulics: OpenFOAM</p></li>
+<li><p>Structural mechanics: DIABLO, Elmer</p></li>
+<li><p>Electromagnetics: Elmer, OpenFOAM</p></li>
+<li><p>Computational fluid dynamics: OpenFOAM</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="framework-architecture">
+<h2>Framework Architecture<a class="headerlink" href="#framework-architecture" title="Permalink to this heading"></a></h2>
+<p>FREDA employs a component-based architecture with standardized data exchange through state files:</p>
+<ul class="simple">
+<li><p><strong>System State File</strong>: Top-level coordination across all domains</p></li>
+<li><p><strong>Plasma State File</strong>: Core and SOL plasma quantities</p></li>
+<li><p><strong>Geometry State File</strong>: Parametric representations of all components</p></li>
+<li><p><strong>Engineering State File</strong>: Neutronics, structural, thermal, electromagnetic, and CFD results</p></li>
+</ul>
+<p>This architecture enables swappable modules with diverse CPU/GPU
+requirements while maintaining data provenance and
+reproducibility. The framework currently runs on NERSC’s Perlmutter
+supercomputer and prioritizes open-source tools wherever feasible.</p>
+</section>
+<section id="philosophy-orchestration-not-full-automation">
+<h2>Philosophy: Orchestration, Not Full Automation<a class="headerlink" href="#philosophy-orchestration-not-full-automation" title="Permalink to this heading"></a></h2>
+<p>FREDA’s goal is not complete automation but rather <strong>orchestrated,
+traceable workflows</strong> that:</p>
+<ul class="simple">
+<li><p>Handle geometry and data translation automatically (plasma flux → wall heat-flux maps → CFD meshes → neutronics)</p></li>
+<li><p>Maintain rigorous provenance tracking (code versions, inputs, assumptions)</p></li>
+<li><p>Automate parameter scans, UQ, and sensitivity analysis</p></li>
+<li><p>Use standardized APIs enabling reproduction and extension without domain expertise in every code</p></li>
+<li><p>Reduce bottlenecks so experts can focus on interpretation rather than tedious file handling</p></li>
+</ul>
+<p>Most physics and engineering codes require expert judgment for setup,
+boundary assumptions, calibration, convergence assessment, and
+interpretation. Forcing complete automation risks “garbage in →
+garbage out” scenarios. FREDA instead enables experts to work more
+efficiently within a well-structured, reproducible framework.</p>
+</section>
+<section id="critical-physics-challenges">
+<h2>Critical Physics Challenges<a class="headerlink" href="#critical-physics-challenges" title="Permalink to this heading"></a></h2>
+<p>FREDA’s current development areas are driven by specific fusion power plant (FPP) challenges that require integrated modeling:</p>
+<dl class="simple">
+<dt><strong>Impurities and “Slag” Management</strong></dt><dd><p>Main wall erosion can dominate impurity influx during detached divertor operation. Solid plasma-facing components (PFCs) experience tons per year of net erosion and redeposition, with eroded material (“slag”) potentially causing disruptions and retaining tritium. FREDA couples edge/SOL particle flux → neutral transport → plasma erosion and sputtering → redeposition patterns → tritium co-deposition, while thermal loads affect slag layer temperature → adhesion and exfoliation probability.</p>
+</dd>
+<dt><strong>PFC Material Lifetime and Operational Windows</strong></dt><dd><p>Neutron damage, thermal fatigue, and irradiation transmutation narrow safe operational windows. FREDA must determine first wall armor thickness, replacement schedules, and allowable degradation by coupling: neutronics → transmutation → composition → property degradation (thermal conductivity κ, electrical conductivity σ, ductile-to-brittle transition temperature DBTT); thermal fatigue → irradiation creep → mechanical stress; and coolant choice → material corrosion and activation.</p>
+</dd>
+<dt><strong>Tritium Retention, Permeation, and Extraction</strong></dt><dd><p>Low-Z materials co-deposit tritium while high-Z materials absorb or trap it through diffusion or bubble formation. Operating temperature windows must balance tritium extraction rates against permeation barrier requirements and wall temperature control to prevent cold traps. FREDA couples plasma flux → retention → surface temperature → tritium permeation through walls, and neutronics → tritium breeding ratio → net retention in slag and structures → blanket temperature → tritium concentration gradients.</p>
+</dd>
+<dt><strong>Thermal and Mechanical Coupling</strong></dt><dd><p>Radiation-induced swelling and cracking combined with variable heat flux produce mechanical mismatch between layers (W/Cu, SiC/steel, coating/substrate). Cracking or delamination exposes new surfaces, changing erosion and impurity influx, or causing coolant leaks. Understanding thermo-mechanical fatigue under realistic load cycling is essential for availability predictions.</p>
+</dd>
+</dl>
+</section>
+<section id="project-organization">
+<h2>Project Organization<a class="headerlink" href="#project-organization" title="Permalink to this heading"></a></h2>
+<p>FREDA brings together expertise from multiple national laboratories, universities, and industry partners:</p>
+<ul class="simple">
+<li><p><strong>ORNL Fusion Energy Division</strong>: Core plasma modeling, edge/SOL physics, systems integration</p></li>
+<li><p><strong>ORNL Nuclear Energy and Fuel Cycle Division</strong>: Neutronics, tritium transport, blanket analysis</p></li>
+<li><p><strong>Lawrence Livermore National Laboratory</strong>: Edge physics modeling, BOUT++ development</p></li>
+<li><p><strong>General Atomics</strong>: Pedestal physics, validation</p></li>
+<li><p><strong>UC San Diego</strong>: Core turbulence modeling</p></li>
+<li><p><strong>ORNL Computer Science &amp; Mathematics Division</strong>: Framework development, workflow optimization, uncertainty quantification</p></li>
+<li><p><strong>Sandia National Laboratories</strong>: Advanced optimization methods, UQ infrastructure</p></li>
+</ul>
+<p>The project is funded through both FES and ASCR programs, reflecting
+its dual focus on fusion physics and advanced computing methodologies.</p>
+</section>
+<section id="contributing-to-freda">
+<h2>Contributing to FREDA<a class="headerlink" href="#contributing-to-freda" title="Permalink to this heading"></a></h2>
+<p>FREDA is designed as an extensible framework welcoming contributions
+from the fusion community. Whether you are developing new physics
+models, engineering analysis capabilities, or improved workflow tools,
+the FREDA architecture provides standardized interfaces for
+integration. The project maintains open documentation, code
+repositories, and communicates regularly at community conferences to facilitate
+collaboration.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to FREDA’s Documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plasma.html" class="btn btn-neutral float-right" title="Plasma" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ORNLFusion.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

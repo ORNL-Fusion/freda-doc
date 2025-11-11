@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IPS-FASTRAN/CESOL: Plamsma backbone integrated modeling &mdash; FREDA 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="IPS-BOUT: BOUT++ / Hermes-3 Interface" href="bout.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            FREDA
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../plasma.html">Plasma</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">IPS-FASTRAN/CESOL: Plamsma backbone integrated modeling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-repositories">Code repositories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-environment-on-perlmutter-at-nersc">Run environment on Perlmutter at NERSC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quick-start-guide">Quick start guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="bout.html">IPS-BOUT: BOUT++ / Hermes-3 Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../materials.html">Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../engineering.html">Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geometry.html">Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uncertainty_quantification.html">Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ips.html">IPS Framework</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FREDA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../plasma.html">Plasma</a></li>
+      <li class="breadcrumb-item active">IPS-FASTRAN/CESOL: Plamsma backbone integrated modeling</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/plasma/ipsfastran.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ips-fastran-cesol-plamsma-backbone-integrated-modeling">
+<h1>IPS-FASTRAN/CESOL: Plamsma backbone integrated modeling<a class="headerlink" href="#ips-fastran-cesol-plamsma-backbone-integrated-modeling" title="Permalink to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>IPS-FASTRAN is an integrated modeling platform for a wide range of flexible theory-based integrated modeling workflows for Tokamak, built upon the High Performance Computing (HPC) Integrated Plasma Simulator <a class="reference external" href="https://ips-framework.readthedocs.io/en/latest">IPS</a> framework. Typical IPS-FASTRAN workflows include:</p>
+<ul class="simple">
+<li><p>Iterative steady-state scenario modeling self-consistent with the state-of-art models of core transport, edge pedestal, equilibrium, stability, heating, and current drive</p></li>
+<li><p>Time-dependent modeling of discharge evolution from current ramp-up to termination towards a high fidelity tokamak pulse design (TokSimulator)</p></li>
+<li><p>Coupled Core-Edge Pedestal-SOL modeling (CESOL)</p></li>
+<li><p>Experiment analysis such as power balance, kinetic EFIT, and core transport analysis</p></li>
+<li><p>Optimization and theory-based reactor design (TokDesigner)</p></li>
+<li><p>Develop surrogate models for the integrated modeling components</p></li>
+</ul>
+</section>
+<section id="code-repositories">
+<h2>Code repositories<a class="headerlink" href="#code-repositories" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>IPS-FASTRAN: <a class="reference external" href="https://github.com/ORNL-Fusion/ips-fastran">https://github.com/ORNL-Fusion/ips-fastran</a></p></li>
+<li><p>IPS-EPED: <a class="reference external" href="https://github.com/ORNL-Fusion/ips-eped">https://github.com/ORNL-Fusion/ips-eped</a></p></li>
+<li><p>IPS-SOLPS-ITER: <a class="reference external" href="https://github.com/ORNL-Fusion/ips-solps-iter">https://github.com/ORNL-Fusion/ips-solps-iter</a></p></li>
+<li><p>TokDesigner: <a class="reference external" href="https://github.com/ORNL-Fusion/TokDesigner">https://github.com/ORNL-Fusion/TokDesigner</a></p></li>
+</ul>
+</section>
+<section id="run-environment-on-perlmutter-at-nersc">
+<h2>Run environment on Perlmutter at NERSC<a class="headerlink" href="#run-environment-on-perlmutter-at-nersc" title="Permalink to this heading"></a></h2>
+<p>Conda environment</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>python
+&gt;<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>/global/common/software/atom/perlmutter/cesol/conda/latest
+</pre></div>
+</div>
+<p>Test</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>python
+Python<span class="w"> </span><span class="m">3</span>.8.19<span class="w"> </span><span class="p">|</span><span class="w"> </span>packaged<span class="w"> </span>by<span class="w"> </span>conda-forge<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="o">(</span>default,<span class="w"> </span>Mar<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="m">2024</span>,<span class="w"> </span><span class="m">12</span>:47:35<span class="o">)</span>
+<span class="o">[</span>GCC<span class="w"> </span><span class="m">12</span>.3.0<span class="o">]</span><span class="w"> </span>on<span class="w"> </span>linux
+Type<span class="w"> </span><span class="s2">&quot;help&quot;</span>,<span class="w"> </span><span class="s2">&quot;copyright&quot;</span>,<span class="w"> </span><span class="s2">&quot;credits&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;license&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information.
+&gt;&gt;&gt;import<span class="w"> </span>fastran
+&gt;&gt;&gt;import<span class="w"> </span>fastran.plasmastate.plasmastate
+&gt;&gt;&gt;import<span class="w"> </span>solps_iter
+&gt;&gt;&gt;import<span class="w"> </span>solpsutils
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>ips.py<span class="w"> </span>--version
+ips.py<span class="w"> </span><span class="m">0</span>.8.1
+</pre></div>
+</div>
+</section>
+<section id="quick-start-guide">
+<h2>Quick start guide<a class="headerlink" href="#quick-start-guide" title="Permalink to this heading"></a></h2>
+<p>See <a class="reference external" href="https://ornl-fusion.github.io/tokdesigner-doc/quick_start_guide.html">https://ornl-fusion.github.io/tokdesigner-doc/quick_start_guide.html</a></p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
+<p><strong>IPS-FASTRAN</strong> J.M. Park, et. al., “Integrated modeling of high bN steady state scenario on DIII-D”, Phys. Plasmas, 25, 012506 (2018) <a class="reference external" href="https://doi.org/10.1063/1.5013021">doi.org/10.1063/1.5013021</a></p>
+<p><strong>IPS</strong> W. R. Elwasif, et. al., “The Design and Implementation of the SWIM Integrated Plasma Simulator”, Pisa, Italy, 2010, pp. 419-427, <a class="reference external" href="https://ieeexplore.ieee.org/document/5452438">doi: 10.1109/PDP.2010.63</a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="bout.html" class="btn btn-neutral float-right" title="IPS-BOUT: BOUT++ / Hermes-3 Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ORNLFusion.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

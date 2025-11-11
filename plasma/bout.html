@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IPS-BOUT: BOUT++ / Hermes-3 Interface &mdash; FREDA 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Materials" href="../materials.html" />
+    <link rel="prev" title="IPS-FASTRAN/CESOL: Plamsma backbone integrated modeling" href="ipsfastran.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            FREDA
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../plasma.html">Plasma</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipsfastran.html">IPS-FASTRAN/CESOL: Plamsma backbone integrated modeling</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">IPS-BOUT: BOUT++ / Hermes-3 Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-are-bout-and-hermes-3">What are BOUT++ and Hermes-3?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../materials.html">Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../engineering.html">Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geometry.html">Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uncertainty_quantification.html">Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows.html">Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ips.html">IPS Framework</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FREDA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../plasma.html">Plasma</a></li>
+      <li class="breadcrumb-item active">IPS-BOUT: BOUT++ / Hermes-3 Interface</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/plasma/bout.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ips-bout-bout-hermes-3-interface">
+<h1>IPS-BOUT: BOUT++ / Hermes-3 Interface<a class="headerlink" href="#ips-bout-bout-hermes-3-interface" title="Permalink to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>IPS-BOUT is a component interface that connects the BOUT++ framework
+and Hermes-3 plasma simulation codes to the Integrated Plasma
+Simulator (IPS) framework. This integration enables sophisticated
+multi-physics fusion reactor simulations as part of the FREDA (Fusion
+REactor Design and Assessment) SciDAC project.  Repository:
+<a class="reference external" href="https://github.com/boutproject/ips-bout">https://github.com/boutproject/ips-bout</a></p>
+</section>
+<section id="what-are-bout-and-hermes-3">
+<h2>What are BOUT++ and Hermes-3?<a class="headerlink" href="#what-are-bout-and-hermes-3" title="Permalink to this heading"></a></h2>
+<p><strong>BOUT++</strong> is a flexible framework for simulating plasma fluid equations in curvilinear coordinate systems. It provides:</p>
+<ul class="simple">
+<li><p>Support for 1D, 2D, and 3D simulations</p></li>
+<li><p>Advanced numerical methods for solving PDEs</p></li>
+<li><p>Parallel execution using MPI</p></li>
+<li><p>Extensive library of physics models and numerical schemes</p></li>
+</ul>
+<p>Repository: <a class="reference external" href="https://github.com/boutproject/BOUT-dev">https://github.com/boutproject/BOUT-dev</a></p>
+<dl class="simple">
+<dt><strong>Hermes-3</strong> is a multifluid plasma simulation model built on BOUT++,</dt><dd><p>specifically designed for:</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>Edge plasma modeling: Transport and turbulence in tokamak boundary regions</p></li>
+<li><p>Multi-species simulations: Arbitrary numbers of ion and neutral species</p></li>
+<li><p>Runtime configuration: Flexible setup without code recompilation</p></li>
+<li><p>Transport and turbulence: Both steady-state and time-evolving problems</p></li>
+</ul>
+<p>Repository: <a class="reference external" href="https://github.com/boutproject/hermes-3">https://github.com/boutproject/hermes-3</a></p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
+<p><strong>BOUT++</strong> B.D. Dudson, M.V. Umansky, X.Q. Xu, P.B. Snyder,
+H.R. Wilson, “BOUT++: A framework for parallel plasma fluid
+simulations” Computer Physics Communications (2009), DOI:
+<a class="reference external" href="https://doi.org/10.1016/j.cpc.2009.03.008">10.1016/j.cpc.2009.03.008</a></p>
+<dl class="simple">
+<dt><strong>Hermes-3</strong>: B. Dudson, M. Kryjak, H. Muhammed, P. Hill, J. Omotani,</dt><dd><p>“Hermes-3: Multi-component plasma simulations with BOUT++”, Computer
+Physics Communications (2024), DOI: <a class="reference external" href="https://doi.org/10.1016/j.cpc.2023.108991">10.1016/j.cpc.2023.108991</a></p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ipsfastran.html" class="btn btn-neutral float-left" title="IPS-FASTRAN/CESOL: Plamsma backbone integrated modeling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../materials.html" class="btn btn-neutral float-right" title="Materials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ORNLFusion.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
