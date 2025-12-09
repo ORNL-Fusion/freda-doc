@@ -74,7 +74,9 @@ NOTE: you will need to be added to the `atom` project before this will work.
 
 To interact with the *development* version of the IPS Portal with your scripts, put the following line in your Slurm script:
 
-`source /global/common/software/atom/ips-portal/credentials/ips-portal-development`
+``source /global/common/software/atom/ips-portal/credentials/ips-portal-development``
+
+This will set the correct ``PORTAL_API_KEY`` and ``PORTAL_URL`` environment variables for you, so you will not have to set them in your IPS configuration files themselves.
 
 Using Jupyter
 -------------
@@ -83,6 +85,6 @@ NOTE: you will need to be added to the `atom` project before this will work.
 
 When using notebooks on jupyter.nersc.gov , it's recommended to have a kernel available with the appropriate dependencies available. A kernel is provided and maintained by the IPS team, which includes support for standard plotting libraries (i.e. `bokeh`) and `adios2`. To make this kernel available for you online, add the following to your `$HOME/.bashrc` on Perlmutter (or, if you are using a default shell which is not Bash, any file which would be sourced when starting a non-login interactive shell):
 
-`export JUPYTER_PATH=$JUPYTER_PATH:/global/common/software/atom/ips-portal/jupyter`
+``export JUPYTER_PATH=$JUPYTER_PATH:/global/common/software/atom/ips-portal/jupyter``
 
 Then, in JupyterHub, when selecting a kernel to use, you should have a kernel labeled `ipsportal-jupyter-env`.
