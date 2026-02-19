@@ -2,6 +2,9 @@ name: docs_pages_workflow
  
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
  
